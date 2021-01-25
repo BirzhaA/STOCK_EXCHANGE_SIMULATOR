@@ -1,10 +1,12 @@
 package com.example.birzha
 
 import android.app.Activity
+import android.media.Image
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.DataPoint
@@ -54,6 +56,25 @@ class MainActivity : Activity() {
         plot.viewport?.isScrollable = true
         plot.viewport?.isXAxisBoundsManual = true
     }
+
+     fun onClickBuy(view: View) {
+        view as ImageButton
+
+        readLine()?.let { makeBid(-1, currentPrice, it.toInt(), BidType.BUY.code, -1.0) }
+    }
+
+    fun onClickSell(view: View){
+        view as ImageButton
+
+        readLine()?.let { makeBid(-1, currentPrice, it.toInt(), BidType.SELL.code, -1.0) }
+    }
+
+    fun userMoney(textView: TextView){
+        val text = findViewById<View>(R.id.text) as TextView
+        text.text = mainUser.money.toString()
+
+    }
+
 }
 
 

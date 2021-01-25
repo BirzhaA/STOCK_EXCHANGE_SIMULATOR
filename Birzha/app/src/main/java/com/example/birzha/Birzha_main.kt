@@ -20,6 +20,13 @@ var sells : MutableList<Bid> = mutableListOf()
 //var buys = PriorityQueue<Bid>() { a, b -> b.price - a.price }
 var buys : MutableList<Bid> = mutableListOf()
 var priceHistory : MutableList<Int> = mutableListOf()
+var mainUser = Person (
+    -1, 10000, 0, currentPrice,
+    Random.nextDouble(1.01, 2.0),
+    Random.nextDouble(0.50, 0.99),
+    Random.nextDouble(1.01, 1.5),
+    Random.nextDouble(0.1, 0.9)
+)
 
 /////////////////КЛАССЫ/////////////////
 class Person (
@@ -77,7 +84,7 @@ suspend fun makePeople(n : Int) : MutableList<Person> {                      // 
     return peopleArray
 }
 
-suspend fun makeBid( personID : Int, price: Int, amount: Int, type: Int, id: Double): Bid {
+fun makeBid( personID : Int, price: Int, amount: Int, type: Int, id: Double): Bid {
     return Bid(personID, price, amount, type, id, Random.nextBoolean(), currentTimeMillis())
 }
 
@@ -102,6 +109,7 @@ suspend fun hedge(cur: Int, bid: Bid, amount: Int, listOfBids: MutableList<Bid>)
         listOfBids.add(makeBid(bid.personID, (people[bid.personID].interestLow * cur).toInt(), amount, BidType.SELL_LOW.code, id))
     }
 }
+
 
 @RequiresApi(Build.VERSION_CODES.N)
 suspend fun tradeBuy(bid: Bid){                            // пытаемся закрыть покупку
