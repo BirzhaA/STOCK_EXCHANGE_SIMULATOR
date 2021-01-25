@@ -18,7 +18,6 @@ var time = 0
 
 class MainActivity : Activity() {
 
-
   var isRun = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +49,6 @@ class MainActivity : Activity() {
             isRun = true
 
         }
-        // типо изменения
         plot.viewport?.isScalable = true
         plot.viewport?.setScalableY(true)
         plot.viewport?.isScrollable = true

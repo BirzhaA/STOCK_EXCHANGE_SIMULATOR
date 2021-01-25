@@ -37,6 +37,7 @@ enum class BidType(val code: Int) {
     BUY(0), SELL(1), SELL_HIGH(2), SELL_LOW(3)
 }
 
+/////////////////ФУНКЦИИ///////////////
 
 suspend fun addDot(){
     runBlocking (Dispatchers.Main) {
@@ -46,7 +47,6 @@ suspend fun addDot(){
     }
 }
 
-/////////////////ФУНКЦИИ///////////////
 suspend fun initialDistributionOfMoney(n:Int): MutableList<Int>{
     val money : MutableList<Int> = mutableListOf()
     for (i in 0 until n){
@@ -73,9 +73,7 @@ suspend fun makePerson(id: Int, initialMoney: Int): Person {                    
 suspend fun makePeople(n : Int) : MutableList<Person> {                      // заполняем массив с пользователями
     val money = initialDistributionOfMoney(n)
     val peopleArray = mutableListOf<Person>()
-    for (i in 0 until n) {
-        peopleArray.add(makePerson(i, money[i]))
-    }
+    for (i in 0 until n) peopleArray.add(makePerson(i, money[i]))
     return peopleArray
 }
 
