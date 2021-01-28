@@ -21,7 +21,7 @@ var sells : MutableList<Bid> = mutableListOf()
 var buys : MutableList<Bid> = mutableListOf()
 var priceHistory : MutableList<Int> = mutableListOf()
 var mainUser = Person (
-    -1, 10000, 0, currentPrice,
+    -1, 10000, 100, currentPrice,
     Random.nextDouble(1.01, 2.0),
     Random.nextDouble(0.50, 0.99),
     Random.nextDouble(1.01, 1.5),
@@ -246,11 +246,12 @@ suspend fun randomUsers(n:Int): MutableList<Person> {
 
 @RequiresApi(Build.VERSION_CODES.N)
 suspend fun birzhaMain() {
-    people = makePeople(100)
-    for (i in 0 until 15000){
+    people = makePeople(100000)
+    while (true){
+    //for (i in 0 until 15000){
         //priceHistory.add(currentPrice)
         println(currentPrice)
-        val activeUsers = randomUsers(100)
+        val activeUsers = randomUsers(100000)
         for (person in activeUsers) {
             if (Random.nextDouble() < person.potency) {
                 runBlocking { decisionBuy(person) }

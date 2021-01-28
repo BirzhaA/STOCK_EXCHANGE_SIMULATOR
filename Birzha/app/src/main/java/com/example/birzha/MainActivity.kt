@@ -1,7 +1,7 @@
 package com.example.birzha
 
+import android.annotation.SuppressLint
 import android.app.Activity
-import android.media.Image
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -12,7 +12,7 @@ import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import kotlinx.coroutines.*
-import kotlin.math.sin
+
 
 lateinit var plot : GraphView
 lateinit var series: LineGraphSeries<DataPoint>
@@ -21,9 +21,14 @@ var time = 0
 class MainActivity : Activity() {
 
   var isRun = false
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var textBidName : TextView? = null
+        textBidName = findViewById(R.id.BidName)
+        textBidName?.text = "Amount assets: "
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -57,25 +62,32 @@ class MainActivity : Activity() {
         plot.viewport?.isXAxisBoundsManual = true
     }
 
-     fun onClickBuy(view: View) {
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun onClickBuy(view: View) {
         view as ImageButton
-
-        readLine()?.let { makeBid(-1, currentPrice, it.toInt(), BidType.BUY.code, -1.0) }
+        makeBid(-1, currentPrice, 5, 0, -1.0)
+        // if(mainUser.money - 5 * currentPrice >= 0) tradeBuy()
     }
 
-    fun onClickSell(view: View){
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun onClickSell(view: View) {
         view as ImageButton
-
-        readLine()?.let { makeBid(-1, currentPrice, it.toInt(), BidType.SELL.code, -1.0) }
+        makeBid(-1, currentPrice, 5, 1, -1.0)
+        //if(mainUser.assets - 5 >= 0) tradeSell()
     }
 
-    fun userMoney(textView: TextView){
-        val text = findViewById<View>(R.id.text) as TextView
-        text.text = mainUser.money.toString()
-
+    fun changeUserMoney() {
+        var textMoney: TextView? = null
+        textMoney = findViewById(R.id.money)
+        textMoney?.text = mainUser.money.toString()
     }
+
+    fun changeUserAssets(){
+        var textAssets: TextView? = null
+        textAssets = findViewById(R.id.assets)
+        textAssets?.text = mainUser.assets.toString()
+    }
+
+    //fun inputAssets(){}
 
 }
-
-
-
