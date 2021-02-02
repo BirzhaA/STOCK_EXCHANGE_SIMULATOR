@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.jjoe64.graphview.series.DataPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import java.lang.System.currentTimeMillis
 import kotlin.math.min
@@ -19,14 +20,14 @@ var sells : MutableList<Bid> = mutableListOf()
 //var sells = PriorityQueue<Bid>() { a, b -> a.price - b.price }
 //var buys = PriorityQueue<Bid>() { a, b -> b.price - a.price }
 var buys : MutableList<Bid> = mutableListOf()
-var priceHistory : MutableList<Int> = mutableListOf()
-var mainUser = Person (
-    -1, 10000, 100, currentPrice,
-    Random.nextDouble(1.01, 2.0),
-    Random.nextDouble(0.50, 0.99),
-    Random.nextDouble(1.01, 1.5),
-    Random.nextDouble(0.1, 0.9)
-)
+//var priceHistory : MutableList<Int> = mutableListOf()
+//var mainUser = Person (
+//    -1, 10000, 100, currentPrice,
+//    Random.nextDouble(1.01, 2.0),
+//    Random.nextDouble(0.50, 0.99),
+//    Random.nextDouble(1.01, 1.5),
+//    Random.nextDouble(0.1, 0.9)
+//)
 
 /////////////////КЛАССЫ/////////////////
 class Person (
@@ -51,13 +52,26 @@ suspend fun addDot(){
         time += 1
         series.appendData(DataPoint(time.toDouble(), currentPrice.toDouble()), true, time)
         plot.addSeries(series)
+        delay(500)
     }
+}
+
+fun makeMainUser(): Person {
+    val x = (Random.nextDouble(15.0, 30.0)).toFloat()
+    val money =  ( (1.2361 * x*x*x - 0.6961 * x*x  + 0.4591 * x - 0.0055)  * 1.1).toInt()
+    return Person (
+        -1, money, 300, currentPrice,
+        Random.nextDouble(1.01, 2.0),
+        Random.nextDouble(0.50, 0.99),
+        Random.nextDouble(1.01, 1.5),
+        Random.nextDouble(0.1, 0.9)
+    )
 }
 
 suspend fun initialDistributionOfMoney(n:Int): MutableList<Int>{
     val money : MutableList<Int> = mutableListOf()
     for (i in 0 until n){
-        val x = (Random.nextDouble(4.0, 10.0)).toFloat()
+        val x = (Random.nextDouble(20.0, 50.0)).toFloat()
         money.add( ( (1.2361 * x*x*x - 0.6961 * x*x  + 0.4591 * x - 0.0055)  * 1.1).toInt() )
     }
     return money
@@ -129,7 +143,7 @@ suspend fun tradeBuy(bid: Bid){                            // пытаемся �
             } else if (sellOffer.price <= bid.price && canSell(sellOffer, currentPrice) and timeCheck(sellOffer)) {
                 currentPrice = sellOffer.price
                 runBlocking { addDot() }
-                priceHistory.add(currentPrice) // debug
+                //priceHistory.add(currentPrice) // debug
                 val tradedAssetsAmount = min(sellOffer.amount, bid.amount)
                 bid.amount -= tradedAssetsAmount
                 sellOffer.amount -= tradedAssetsAmount
@@ -179,7 +193,7 @@ suspend fun tradeSell(bid: Bid){                  // пытаемся закры
             } else if (buyOffer.price >= bid.price && timeCheck(buyOffer)){
                 currentPrice = buyOffer.price
                 runBlocking { addDot() }
-                priceHistory.add(currentPrice)
+                //priceHistory.add(currentPrice)
                 val tradedAssetsAmount = min(buyOffer.amount, bid.amount)
                 bid.amount -= tradedAssetsAmount
                 buyOffer.amount -= tradedAssetsAmount

@@ -11,12 +11,14 @@ import androidx.annotation.RequiresApi
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 
 
 lateinit var plot : GraphView
 lateinit var series: LineGraphSeries<DataPoint>
 var time = 0
+val mainUser = makeMainUser()
 
 class MainActivity : Activity() {
 
@@ -25,10 +27,6 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        var textBidName : TextView? = null
-        textBidName = findViewById(R.id.BidName)
-        textBidName?.text = "Amount assets: "
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -37,14 +35,18 @@ class MainActivity : Activity() {
         if (isRun) {
             view.setImageResource(R.drawable.start)
             isRun = false
-            
-        }
-        else if (!isRun) {
+        } else if (!isRun) {
             view.setImageResource(R.drawable.stop)
 
+            val mainUserMoney: TextView? = findViewById(R.id.mainUserMoney)
+            val mainUserAssets: TextView? = findViewById(R.id.mainUserAssets)
+
+            mainUserMoney?.text = mainUser.money.toString()
+            mainUserAssets?.text = mainUser.assets.toString()
+
             plot = findViewById(R.id.graph)
-            series = LineGraphSeries<DataPoint>(
-                arrayOf<DataPoint>(
+            series = LineGraphSeries(
+                arrayOf(
                     DataPoint(0.0, 100.0)
                 )
             )
@@ -54,39 +56,65 @@ class MainActivity : Activity() {
                 birzhaMain()
             }
             isRun = true
-
         }
+
         plot.viewport?.isScalable = true
         plot.viewport?.setScalableY(true)
         plot.viewport?.isScrollable = true
         plot.viewport?.isXAxisBoundsManual = true
+//        plot.legendRenderer.setFixedPosition(5, 20)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun onClickBuy(view: View) {
         view as ImageButton
-        makeBid(-1, currentPrice, 5, 0, -1.0)
-        // if(mainUser.money - 5 * currentPrice >= 0) tradeBuy()
+
+        val openBid: TextView = findViewById(R.id.bidType)
+        val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
+        val profitValue: TextView = findViewById(R.id.profitValue)
+
+        val buyPrice = currentPrice
+
+        openBid.text = "Buy on"
+        openBidPrice.text = buyPrice.toString()
+        profitValue.text = (currentPrice - buyPrice).toString()
+
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun onClickSell(view: View) {
         view as ImageButton
-        makeBid(-1, currentPrice, 5, 1, -1.0)
-        //if(mainUser.assets - 5 >= 0) tradeSell()
+        val openBid: TextView = findViewById(R.id.bidType)
+        val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
+        val profitValue: TextView = findViewById(R.id.profitValue)
+
+        val sellPrice = currentPrice
+
+        openBid.text = "Sell on"
+        openBidPrice.text = sellPrice.toString()
+        profitValue.text = (currentPrice - sellPrice).toString()
     }
 
-    fun changeUserMoney() {
-        var textMoney: TextView? = null
-        textMoney = findViewById(R.id.money)
-        textMoney?.text = mainUser.money.toString()
-    }
+//    fun closeBid(view: View){
+//
+//        val profitValue: TextView = findViewById(R.id.profitValue)
+//
+//        mainUser.money -= profitValue.toInt()
+//        mainUserMoney?.text = mainUser.money.toString()
+//
+//    }
 
-    fun changeUserAssets(){
-        var textAssets: TextView? = null
-        textAssets = findViewById(R.id.assets)
-        textAssets?.text = mainUser.assets.toString()
-    }
+//    fun changeUserMoney() {
+//        var textMoney: TextView? = null
+//        textMoney = findViewById(R.id.mainUserMoney)
+//        textMoney?.text = mainUser.money.toString()
+//    }
+//
+//    fun changeUserAssets(){
+//        var textAssets: TextView? = null
+//        textAssets = findViewById(R.id.assets)
+//        textAssets?.text = mainUser.assets.toString()
+//    }
 
     //fun inputAssets(){}
 
