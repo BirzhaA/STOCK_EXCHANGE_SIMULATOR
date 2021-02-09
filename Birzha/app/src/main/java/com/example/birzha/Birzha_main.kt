@@ -2,6 +2,7 @@
 
 package com.example.birzha//import java.util.Random
 import android.os.Build
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.jjoe64.graphview.series.DataPoint
 import kotlinx.coroutines.Dispatchers
@@ -21,13 +22,6 @@ var sells : MutableList<Bid> = mutableListOf()
 //var buys = PriorityQueue<Bid>() { a, b -> b.price - a.price }
 var buys : MutableList<Bid> = mutableListOf()
 //var priceHistory : MutableList<Int> = mutableListOf()
-//var mainUser = Person (
-//    -1, 10000, 100, currentPrice,
-//    Random.nextDouble(1.01, 2.0),
-//    Random.nextDouble(0.50, 0.99),
-//    Random.nextDouble(1.01, 1.5),
-//    Random.nextDouble(0.1, 0.9)
-//)
 
 /////////////////КЛАССЫ/////////////////
 class Person (
@@ -50,17 +44,19 @@ enum class BidType(val code: Int) {
 suspend fun addDot(){
     runBlocking (Dispatchers.Main) {
         time += 1
+        if(currentPrice <= 25) currentPrice += Random.nextInt(10, 20)
         series.appendData(DataPoint(time.toDouble(), currentPrice.toDouble()), true, time)
         plot.addSeries(series)
+
         delay(500)
     }
 }
 
 fun makeMainUser(): Person {
-    val x = (Random.nextDouble(15.0, 30.0)).toFloat()
+    val x = (Random.nextDouble(10.0, 15.0)).toFloat()
     val money =  ( (1.2361 * x*x*x - 0.6961 * x*x  + 0.4591 * x - 0.0055)  * 1.1).toInt()
     return Person (
-        -1, money, 300, currentPrice,
+        -1, money, Random.nextInt(50, 200), currentPrice,
         Random.nextDouble(1.01, 2.0),
         Random.nextDouble(0.50, 0.99),
         Random.nextDouble(1.01, 1.5),
@@ -102,21 +98,21 @@ fun makeBid( personID : Int, price: Int, amount: Int, type: Int, id: Double): Bi
     return Bid(personID, price, amount, type, id, Random.nextBoolean(), currentTimeMillis())
 }
 
-suspend fun isEmpty(bid: Bid): Boolean {
+fun isEmpty(bid: Bid): Boolean {
     return bid.amount == 0
 }
 
-suspend fun canSell (bid: Bid, cur: Int) : Boolean {
+fun canSell (bid: Bid, cur: Int) : Boolean {
     var res = true
     if ( ((bid.code == 2) and (bid.price <= cur)) or ((bid.code == 3) and (bid.price >= cur)) ) res = false
     return res
 }
 
-suspend fun timeCheck(bid: Bid): Boolean{
-    return currentTimeMillis() - bid.timeOfCreation <= 500
+fun timeCheck(bid: Bid): Boolean{
+    return currentTimeMillis() - bid.timeOfCreation <= 400
 }
 
-suspend fun hedge(cur: Int, bid: Bid, amount: Int, listOfBids: MutableList<Bid>){
+fun hedge(cur: Int, bid: Bid, amount: Int, listOfBids: MutableList<Bid>){
     val id = Random.nextDouble(0.0, 100000.0)
     if(bid.hedgeOrNo){
         listOfBids.add(makeBid(bid.personID, (people[bid.personID].interestHigh * cur).toInt(), amount, BidType.SELL_HIGH.code, id))
@@ -251,7 +247,7 @@ suspend fun decisionSell(person : Person) {
     }
 }
 
-suspend fun randomUsers(n:Int): MutableList<Person> {
+fun randomUsers(n:Int): MutableList<Person> {
     val activeUsers : MutableList<Person> = mutableListOf()
     val count = Random.nextInt(n/2, n-1)
     for (i in 0 until count) activeUsers.add(people[Random.nextInt(0,n)])
@@ -265,6 +261,12 @@ suspend fun birzhaMain() {
     //for (i in 0 until 15000){
         //priceHistory.add(currentPrice)
         println(currentPrice)
+        if(time % 60 == 0){
+            sells.clear()
+            buys.clear()
+        }
+//        if(sells.size >= 40) sells.clear()
+//        if(buys.size >= 40) buys.clear()
         val activeUsers = randomUsers(100000)
         for (person in activeUsers) {
             if (Random.nextDouble() < person.potency) {
