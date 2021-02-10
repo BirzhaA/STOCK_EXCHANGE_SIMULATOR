@@ -54,7 +54,8 @@ suspend fun addDot(){
 
 fun makeMainUser(): Person {
     val x = (Random.nextDouble(10.0, 15.0)).toFloat()
-    val money =  ( (1.2361 * x*x*x - 0.6961 * x*x  + 0.4591 * x - 0.0055)  * 1.1).toInt()
+    //val money =  ( (1.2361 * x*x*x - 0.6961 * x*x  + 0.4591 * x - 0.0055)  * 1.1).toInt()
+    val money = 1000
     return Person (
         -1, money, Random.nextInt(50, 200), currentPrice,
         Random.nextDouble(1.01, 2.0),

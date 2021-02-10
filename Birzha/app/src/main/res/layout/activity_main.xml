@@ -11,12 +11,12 @@
         android:id="@+id/openiBidPrice"
         android:layout_width="62dp"
         android:layout_height="30dp"
-        android:layout_marginStart="176dp"
+        android:layout_marginStart="172dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/startAndStopButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.474" />
+        app:layout_constraintVertical_bias="0.47" />
 
     <ImageButton
         android:id="@+id/startAndStopButton"
@@ -40,46 +40,26 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="2dp"
+        android:scaleX="100"
+        android:scaleY="200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/mainUserMoney"
         android:layout_width="100dp"
         android:layout_height="31dp"
-        android:layout_marginEnd="156dp"
+        android:layout_marginEnd="196dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
+        android:onClick="closeBid"
         app:layout_constraintBottom_toTopOf="@+id/graph"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.605" />
-
-    <!--    <TextView-->
-    android:id="@+id/mainUserAssets"
-    android:layout_width="62dp"
-    android:layout_height="26dp"
-    android:layout_marginEnd="12dp"
-    android:textColor="#000000"
-    app:layout_constraintBottom_toTopOf="@+id/graph"
-    app:layout_constraintEnd_toStartOf="@+id/moneyText"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.628" />
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/assetsText"-->
-    <!--        android:layout_width="74dp"-->
-    <!--        android:layout_height="28dp"-->
-    <!--        android:text="Assets: "-->
-    <!--        android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/graph"-->
-    <!--        app:layout_constraintEnd_toStartOf="@+id/mainUserAssets"-->
-    <!--        app:layout_constraintHorizontal_bias="1.0"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintVertical_bias="0.605" />-->
+        app:layout_constraintVertical_bias="0.655" />
 
     <ImageButton
         android:id="@+id/sell"
@@ -137,15 +117,14 @@
 
     <TextView
         android:id="@+id/profitValue"
-        android:layout_width="43dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
+        android:layout_width="50dp"
+        android:layout_height="29dp"
+        android:layout_marginEnd="44dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/startAndStopButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profit"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.657" />
 
     <TextView
         android:id="@+id/profit"
@@ -155,10 +134,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/startAndStopButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintHorizontal_bias="0.665"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.236" />
+        app:layout_constraintVertical_bias="0.177" />
 
     <TextView
         android:id="@+id/bidType"
@@ -182,7 +161,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sell"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.968"
         app:layout_constraintStart_toEndOf="@+id/buy"
         app:layout_constraintTop_toBottomOf="@+id/graph"
         app:layout_constraintVertical_bias="0.551" />
@@ -208,10 +187,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/curPrice"
         app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.112" />
+        app:layout_constraintVertical_bias="0.115" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

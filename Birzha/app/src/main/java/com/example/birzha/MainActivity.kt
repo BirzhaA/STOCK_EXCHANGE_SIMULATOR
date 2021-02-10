@@ -94,8 +94,9 @@ class MainActivity : Activity() {
             val openBid: TextView = findViewById(R.id.bidType)
             val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
 
-            openBid.text = "BUY on"
+            openBid.text = "Buy on"
             openBidPrice.text = openPrice.toString()
+            mainUser.money -= openPrice
         }
     }
 
@@ -109,37 +110,54 @@ class MainActivity : Activity() {
             val openBid: TextView = findViewById(R.id.bidType)
             val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
 
-            openBid.text = "SELL on"
+            openBid.text = "Sell on"
             openBidPrice.text = openPrice.toString()
+            mainUser.money -= openPrice
         }
     }
+
+//    fun closeBid(view: View){
+//        view as ImageButton
+
+//        status = "none"
+//        mainUser.money -= profit
+//        mainUserMoney?.text = mainUser.money.toString()
+//
+//        val openBid: TextView = findViewById(R.id.bidType)
+//        val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
+//        openBid.text = ""
+//        openBidPrice.text = ""
+//
+//    }
 
     fun closeBid(view: View){
         view as ImageButton
 
         status = "none"
-        mainUser.money -= profit
+
+        mainUser.money = mainUser.money + profit + openPrice
         mainUserMoney?.text = mainUser.money.toString()
 
+        val profitValue: TextView = findViewById(R.id.profitValue)
         val openBid: TextView = findViewById(R.id.bidType)
         val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
         openBid.text = ""
         openBidPrice.text = ""
+        profitValue.text = ""
 
     }
+
 
 //    fun changeUserMoney() {
 //        var textMoney: TextView? = null
 //        textMoney = findViewById(R.id.mainUserMoney)
 //        textMoney?.text = mainUser.money.toString()
 //    }
-//
+
 //    fun changeUserAssets(){
 //        var textAssets: TextView? = null
 //        textAssets = findViewById(R.id.assets)
 //        textAssets?.text = mainUser.assets.toString()
 //    }
-
-    //fun inputAssets(){}
 
 }
