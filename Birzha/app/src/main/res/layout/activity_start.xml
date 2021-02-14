@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="startActivity"
-    tools:context=".`ScreenActivity.kt`">
+    tools:context=".StartActivity">
 
     <ImageButton
         android:id="@+id/startActivity"
         android:layout_width="181dp"
         android:layout_height="112dp"
         android:background="#00FFFFFF"
+        android:onClick="startActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.479"
         app:srcCompat="@drawable/start_activity" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
