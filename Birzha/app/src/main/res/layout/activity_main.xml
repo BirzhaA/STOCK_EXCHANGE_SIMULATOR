@@ -9,7 +9,6 @@
     android:padding="20dp"
     tools:context=".MainActivity">
 
-
     <LinearLayout
         android:id="@+id/Liner1"
         android:layout_width="match_parent"
@@ -101,6 +100,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/Liner3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Liner2"
@@ -137,92 +137,66 @@
 
     </LinearLayout>
 
+
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
-        android:layout_width="351dp"
         android:layout_height="277dp"
+        android:layout_marginEnd="2dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="351dp"
         app:layout_editor_absoluteX="500dp"
         app:layout_editor_absoluteY="200dp" />
 
 
-    <ImageButton
-        android:id="@+id/startAndStopButton"
-        android:layout_width="102dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="53dp"
-        android:background="#16FFFFFF"
-        android:contentDescription="@string/start_button"
-        android:onClick="onClickStartStop"
-        android:src="@drawable/start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.836" />
+    <!-- <ImageButton
+         android:id="@+id/startAndStopButton"
+         android:layout_width="102dp"
+         android:layout_height="85dp"
+         android:layout_marginTop="53dp"
+         android:background="#16FFFFFF"
+         android:contentDescription="@string/start_button"
+         android:onClick="onClickStartStop"
+         android:src="@drawable/start"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/graph"
+         app:layout_constraintVertical_bias="0.836" /> -->
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_above="@+id/graph"/>
 
-    <TextView
-        android:id="@+id/mainUserMoney"
-        android:layout_width="100dp"
-        android:layout_height="31dp"
-        android:layout_marginEnd="196dp"
-        android:onClick="closeBid"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFF"
-        app:layout_constraintBottom_toTopOf="@+id/graph"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.655" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Money:"
+            android:textColor="#FFF"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            />
+        <TextView
+            android:id="@+id/mainUserMoney"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
 
-    <ImageButton
-        android:id="@+id/sell"
-        android:layout_width="105dp"
-        android:layout_height="34dp"
-        android:layout_marginEnd="8dp"
-        android:background="#00FFFFFF"
-        android:onClick="onClickSell"
-        android:src="@drawable/sell"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/startAndStopButton"
-        app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.538"
-        tools:ignore="ExtraText,OnClick" />
-
-    <ImageButton
-        android:id="@+id/buy"
-        android:layout_width="106dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="8dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/todo"
-        android:onClick="onClickBuy"
-        android:src="@drawable/buy"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.538" />
-
-    <TextView
-        android:id="@+id/moneyText"
-        android:layout_width="83dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="28dp"
-        android:text="@string/money"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFF"
-        app:layout_constraintBottom_toTopOf="@+id/graph"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.613" />
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Assets:"
+            android:textColor="#FFF"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        <TextView
+            android:id="@+id/mainUserAssets"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />-->
     <!--    <Button
             android:id="@+id/closeBidButton"
             android:layout_width="120dp"
@@ -238,4 +212,34 @@
             app:layout_constraintTop_toBottomOf="@+id/graph"
             app:layout_constraintVertical_bias="0.551" /> -->
 
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Liner3"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" />
+
+        <Button
+            android:id="@+id/buy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickBuy"
+            android:text="Buy"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/sell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickSell"
+            android:text="Sell"
+            android:textColor="#FFF" />
+    </RelativeLayout>-->
 </RelativeLayout>
