@@ -64,7 +64,7 @@ class MainActivity : Activity() {
 
         plot.viewport?.isScalable = true
         plot.viewport?.setScalableY(false)
-        plot.viewport?.isScrollable = false
+        plot.viewport?.isScrollable = true
         plot.viewport?.isXAxisBoundsManual = true
 
         GlobalScope.launch{

@@ -1,39 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/assets"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:backgroundTint="@color/background"
+    android:background="@drawable/background"
+    android:padding="20dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/openiBidPrice"
-        android:layout_width="62dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="172dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/startAndStopButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.47" />
 
-    <ImageButton
-        android:id="@+id/startAndStopButton"
-        android:layout_width="102dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="53dp"
-        android:background="#16FFFFFF"
-        android:contentDescription="@string/start_button"
-        android:onClick="onClickStartStop"
-        android:src="@drawable/start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.836" />
+    <LinearLayout
+        android:id="@+id/Liner1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/graph"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/curPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Price:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/curValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/profit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Profit:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/profitValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Liner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Liner1"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/openBid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Opening:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/bidType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/openiBidPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Liner2"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Assets:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:backgroundTint="#FFF"
+            android:hint="amount"
+            android:inputType="number"
+            android:textColor="#FFF"
+            android:textColorHint="#80FFFFFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1" />
+
+    </LinearLayout>
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
@@ -50,6 +152,21 @@
         app:layout_editor_absoluteY="200dp" />
 
 
+    <ImageButton
+        android:id="@+id/startAndStopButton"
+        android:layout_width="102dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="53dp"
+        android:background="#16FFFFFF"
+        android:contentDescription="@string/start_button"
+        android:onClick="onClickStartStop"
+        android:src="@drawable/start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graph"
+        app:layout_constraintVertical_bias="0.836" />
+
     <TextView
         android:id="@+id/mainUserMoney"
         android:layout_width="100dp"
@@ -57,7 +174,7 @@
         android:layout_marginEnd="196dp"
         android:onClick="closeBid"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#000000"
+        android:textColor="#FFF"
         app:layout_constraintBottom_toTopOf="@+id/graph"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -100,99 +217,25 @@
         android:layout_marginStart="28dp"
         android:text="@string/money"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFF"
         app:layout_constraintBottom_toTopOf="@+id/graph"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.613" />
 
-    <TextView
-        android:id="@+id/openBid"
-        android:layout_width="95dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:text="Opening: "
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/startAndStopButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.47" />
+    <!--    <Button
+            android:id="@+id/closeBidButton"
+            android:layout_width="120dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="32dp"
+            android:onClick="closeBid"
+            android:text="Close bid"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sell"
+            app:layout_constraintHorizontal_bias="0.968"
+            app:layout_constraintStart_toEndOf="@+id/buy"
+            app:layout_constraintTop_toBottomOf="@+id/graph"
+            app:layout_constraintVertical_bias="0.551" /> -->
 
-    <TextView
-        android:id="@+id/profitValue"
-        android:layout_width="50dp"
-        android:layout_height="29dp"
-        android:layout_marginEnd="44dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/startAndStopButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
-
-    <TextView
-        android:id="@+id/profit"
-        android:layout_width="73dp"
-        android:layout_height="31dp"
-        android:text="Profit:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/startAndStopButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.665"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.177" />
-
-    <TextView
-        android:id="@+id/bidType"
-        android:layout_width="62dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="108dp"
-        android:text="    "
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/startAndStopButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.47" />
-
-    <Button
-        android:id="@+id/closeBidButton"
-        android:layout_width="120dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="32dp"
-        android:onClick="closeBid"
-        android:text="Close bid"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sell"
-        app:layout_constraintHorizontal_bias="0.968"
-        app:layout_constraintStart_toEndOf="@+id/buy"
-        app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.551" />
-
-    <TextView
-        android:id="@+id/curPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Current price:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.115" />
-
-    <TextView
-        android:id="@+id/curValue"
-        android:layout_width="58dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="208dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/curPrice"
-        app:layout_constraintTop_toBottomOf="@+id/graph"
-        app:layout_constraintVertical_bias="0.115" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
