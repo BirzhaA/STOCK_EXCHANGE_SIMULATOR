@@ -13,6 +13,7 @@ import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
+import java.lang.Thread.sleep
 
 lateinit var plot : GraphView
 lateinit var series: LineGraphSeries<DataPoint>
@@ -29,6 +30,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //MainActivity.setImageResource(R.drawable.background);
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -36,7 +38,9 @@ class MainActivity : Activity() {
         view as ImageButton
         if (isRun) {
             view.setImageResource(R.drawable.start)
+            //while(isRun) sleep(1000)
             isRun = false
+
         } else if (!isRun) {
             view.setImageResource(R.drawable.stop)
 
@@ -59,8 +63,8 @@ class MainActivity : Activity() {
         }
 
         plot.viewport?.isScalable = true
-        plot.viewport?.setScalableY(true)
-        plot.viewport?.isScrollable = true
+        plot.viewport?.setScalableY(false)
+        plot.viewport?.isScrollable = false
         plot.viewport?.isXAxisBoundsManual = true
 
         GlobalScope.launch{
