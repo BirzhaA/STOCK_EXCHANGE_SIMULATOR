@@ -92,10 +92,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.1" />
 
     </LinearLayout>
 
@@ -144,23 +140,6 @@
         android:layout_height="277dp"
         android:layout_marginTop="10dp"
         android:layout_below="@id/liner_header"/>
-
-
-    <!-- <ImageButton
-         android:id="@+id/startAndStopButton"
-         android:layout_width="102dp"
-         android:layout_height="85dp"
-         android:layout_marginTop="53dp"
-         android:background="#16FFFFFF"
-         android:contentDescription="@string/start_button"
-         android:onClick="onClickStartStop"
-         android:src="@drawable/start"
-         app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/graph"
-         app:layout_constraintVertical_bias="0.836" /> -->
-    
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -276,6 +255,7 @@
 
     <Button
         android:id="@+id/bt_start_stop"
+        android:onClick="onClickStartStop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"

@@ -121,36 +121,6 @@ class MainActivity : Activity() {
         }
     }
 
-//    fun closeBid(view: View){
-//        view as ImageButton
-
-//        status = "none"
-//        mainUser.money -= profit
-//        mainUserMoney?.text = mainUser.money.toString()
-//
-//        val openBid: TextView = findViewById(R.id.bidType)
-//        val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
-//        openBid.text = ""
-//        openBidPrice.text = ""
-//
-//    }
-
-    /*fun closeBid(view: View){
-        view as ImageButton
-
-        status = "none"
-
-        mainUser.money = mainUser.money + profit + openPrice
-        mainUserMoney?.text = mainUser.money.toString()
-
-        val profitValue: TextView = findViewById(R.id.profitValue)
-        val openBid: TextView = findViewById(R.id.bidType)
-        val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
-        openBid.text = ""
-        openBidPrice.text = ""
-        profitValue.text = ""
-
-    }*/
 
 
 //    fun changeUserMoney() {
