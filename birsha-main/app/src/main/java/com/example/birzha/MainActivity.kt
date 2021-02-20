@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -31,7 +32,6 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //MainActivity.setImageResource(R.drawable.background);
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -48,6 +48,7 @@ class MainActivity : Activity() {
             val mainUserMoney: TextView? = findViewById(R.id.mainUserMoney)
 
             mainUserMoney?.text = mainUser.money.toString()
+            mainUserAssets?.text = mainUser.assets.toString()
 
             plot = findViewById(R.id.graph)
             series = LineGraphSeries(
@@ -91,7 +92,7 @@ class MainActivity : Activity() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun onClickBuy(view: View) {
         view as Button
-
+        //val assets : String? = EditText(R.id.inputAmount)
         if (status == "none"){
             status = "buy"
             openPrice = currentPrice

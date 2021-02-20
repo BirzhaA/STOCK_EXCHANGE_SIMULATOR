@@ -66,7 +66,7 @@
             android:id="@+id/openBid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.99"
             android:text="Opening:"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFF" />
@@ -112,6 +112,7 @@
             android:textColor="#FFFFFF" />
 
         <EditText
+            android:id="@+id/inputAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
@@ -133,7 +134,6 @@
 
     </LinearLayout>
 
-
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
         android:layout_width="wrap_content"
@@ -148,37 +148,32 @@
         android:id="@+id/liner_header"
         android:orientation="horizontal">
 
+
         <RelativeLayout
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="@drawable/bg_assets"
-            android:layout_weight="1">
+            android:gravity="center">
+
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
+                android:id="@+id/imgMoney"
+                android:layout_width="50dp"
+                android:layout_height="34dp"
+                android:src="@drawable/money" />
 
             <TextView
-                android:id="@+id/textMoney"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Money:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="#FFF"
-                />
-            <TextView
-                android:layout_toRightOf="@+id/textMoney"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/mainUserMoney"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgMoney"
                 android:text="test"
-                />
+                android:textColor="#FFF"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         </RelativeLayout>
-
-
 
         <TextView
             android:layout_width="match_parent"
@@ -194,24 +189,21 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:id="@+id/imgAssets"
+                android:layout_width="50dp"
+                android:layout_height="34dp"
+                android:src="@drawable/assets"/>
+
+
 
             <TextView
-                android:id="@+id/textAssets"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Assets:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="#FFF"
-                />
-            <TextView
-                android:layout_toRightOf="@+id/textAssets"
+                android:layout_toRightOf="@+id/imgAssets"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/mainUserAssets"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:text="test"
+                android:textColor="#FFF"
                 />
 
         </RelativeLayout>

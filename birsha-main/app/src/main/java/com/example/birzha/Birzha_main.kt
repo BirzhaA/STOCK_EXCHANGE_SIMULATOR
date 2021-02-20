@@ -56,8 +56,9 @@ fun makeMainUser(): Person {
     //val x = (Random.nextDouble(10.0, 15.0)).toFloat()
     //val money =  ( (1.2361 * x*x*x - 0.6961 * x*x  + 0.4591 * x - 0.0055)  * 1.1).toInt()
     val money = 1000
+    val assets = 100
     return Person (
-        -1, money, Random.nextInt(50, 200), currentPrice,
+        -1, money, assets, currentPrice,
         Random.nextDouble(1.01, 2.0),
         Random.nextDouble(0.50, 0.99),
         Random.nextDouble(1.01, 1.5),
@@ -257,7 +258,7 @@ fun randomUsers(n:Int): MutableList<Person> {
 
 @RequiresApi(Build.VERSION_CODES.N)
 suspend fun birzhaMain() {
-    people = makePeople(100000)
+    people = makePeople(999999)
     while (true){
     //for (i in 0 until 15000){
         //priceHistory.add(currentPrice)
