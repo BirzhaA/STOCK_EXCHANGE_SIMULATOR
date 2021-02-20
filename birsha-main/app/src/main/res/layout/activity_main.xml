@@ -160,45 +160,7 @@
          app:layout_constraintStart_toStartOf="parent"
          app:layout_constraintTop_toBottomOf="@+id/graph"
          app:layout_constraintVertical_bias="0.836" /> -->
-
-    <!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/liner_header"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Money:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FFF" />
-
-        <TextView
-            android:id="@+id/mainUserMoney"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FFF" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Assets:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FFF" />
-
-        <TextView
-            android:id="@+id/mainUserAssets"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FFF" />
-    </LinearLayout>-->
+    
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -276,22 +238,6 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-
-    <!--    <Button
-            android:id="@+id/closeBidButton"
-            android:layout_width="120dp"
-            android:layout_height="44dp"
-            android:layout_marginEnd="32dp"
-            android:onClick="closeBid"
-            android:text="Close bid"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/sell"
-            app:layout_constraintHorizontal_bias="0.968"
-            app:layout_constraintStart_toEndOf="@+id/buy"
-            app:layout_constraintTop_toBottomOf="@+id/graph"
-            app:layout_constraintVertical_bias="0.551" /> -->
 
     <LinearLayout
         android:layout_width="match_parent"

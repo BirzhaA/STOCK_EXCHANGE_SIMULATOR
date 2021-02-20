@@ -38,12 +38,12 @@ class MainActivity : Activity() {
     fun onClickStartStop(view: View) {
         view as Button
         if (isRun) {
-            view.setImageResource(R.drawable.start)
+            //view.setImageResource(R.drawable.start)
             while(isRun) sleep(1000)
             isRun = false
 
         } else if (!isRun) {
-            view.setImageResource(R.drawable.stop)
+            //view.setImageResource(R.drawable.stop)
 
             val mainUserMoney: TextView? = findViewById(R.id.mainUserMoney)
 
@@ -61,7 +61,7 @@ class MainActivity : Activity() {
                 birzhaMain()
             }
             isRun = true
-        //}
+        }
 
         plot.viewport?.isScalable = true
         plot.viewport?.setScalableY(false)
