@@ -5,10 +5,7 @@ import android.os.Build
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.jjoe64.graphview.series.DataPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.lang.System.currentTimeMillis
 import kotlin.math.min
 import kotlin.random.Random
@@ -48,7 +45,7 @@ suspend fun addDot(){
         if(currentPrice <= 25) currentPrice += Random.nextInt(10, 20)
         series.appendData(DataPoint(time.toDouble(), currentPrice.toDouble()), true, time)
         plot.addSeries(series)
-
+        curValueText.text = currentPrice.toString()
         delay(500)
     }
 }
@@ -56,7 +53,7 @@ suspend fun addDot(){
 fun makeMainUser(): Person {
     //val x = (Random.nextDouble(10.0, 15.0)).toFloat()
     //val money =  ( (1.2361 * x*x*x - 0.6961 * x*x  + 0.4591 * x - 0.0055)  * 1.1).toInt()
-    val money = 1000
+    val money = startMoney
     val assets = 100
     return Person (
         -1, money, assets, currentPrice,
@@ -259,10 +256,11 @@ fun randomUsers(n:Int): MutableList<Person> {
 
 @RequiresApi(Build.VERSION_CODES.N)
 suspend fun birzhaMain() {
-    people = makePeople(999999)
+    people = makePeople(10001)
     while (true){
+
         if (isRun){
-            val index = Random.nextInt(0,999999-1)
+            val index = Random.nextInt(0,10000)
             val person = people[index]
             if (Random.nextDouble() < person.potency) {
                 runBlocking { decisionBuy(person) }
@@ -271,6 +269,8 @@ suspend fun birzhaMain() {
                 runBlocking { decisionSell(person) }
             }
         }
+
+
     //for (i in 0 until 15000){
         //priceHistory.add(currentPrice)
         //println(currentPrice)

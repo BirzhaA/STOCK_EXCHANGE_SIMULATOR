@@ -169,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/imgMoney"
-                android:text="test"
+                android:text="1000"
                 android:textColor="#FFF"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -195,16 +195,15 @@
                 android:src="@drawable/assets"/>
 
 
-
             <TextView
-                android:layout_toRightOf="@+id/imgAssets"
+                android:id="@+id/mainUserAssets"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/mainUserAssets"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_marginLeft="0dp"
+                android:layout_toRightOf="@+id/imgAssets"
                 android:text="test"
-                android:textColor="#FFF"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFF" />
 
         </RelativeLayout>
 
