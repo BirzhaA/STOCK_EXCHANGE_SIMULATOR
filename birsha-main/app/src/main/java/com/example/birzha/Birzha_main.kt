@@ -8,6 +8,7 @@ import com.jjoe64.graphview.series.DataPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import java.lang.System.currentTimeMillis
 import kotlin.math.min
 import kotlin.random.Random
@@ -260,17 +261,9 @@ fun randomUsers(n:Int): MutableList<Person> {
 suspend fun birzhaMain() {
     people = makePeople(999999)
     while (true){
-    //for (i in 0 until 15000){
-        //priceHistory.add(currentPrice)
-        println(currentPrice)
-        if(time % 60 == 0){
-            sells.clear()
-            buys.clear()
-        }
-//        if(sells.size >= 40) sells.clear()
-//        if(buys.size >= 40) buys.clear()
-        val activeUsers = randomUsers(100000)
-        for (person in activeUsers) {
+        if (isRun){
+            val index = Random.nextInt(0,999999-1)
+            val person = people[index]
             if (Random.nextDouble() < person.potency) {
                 runBlocking { decisionBuy(person) }
             }
@@ -278,6 +271,15 @@ suspend fun birzhaMain() {
                 runBlocking { decisionSell(person) }
             }
         }
+    //for (i in 0 until 15000){
+        //priceHistory.add(currentPrice)
+        //println(currentPrice)
+        /*if(time % 60 == 0){
+            sells.clear()
+            buys.clear()
+        }*/
+//        if(sells.size >= 40) sells.clear()
+//        if(buys.size >= 40) buys.clear()
     }
 //    File("prices.csv").printWriter().use { out ->
 //        priceHistory.forEach {

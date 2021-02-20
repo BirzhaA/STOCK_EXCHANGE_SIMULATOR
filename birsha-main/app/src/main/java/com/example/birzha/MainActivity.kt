@@ -23,10 +23,10 @@ var time = 0
 val mainUser = makeMainUser()
 var status = "none"
 var openPrice = 0
+var isRun = false
 
 class MainActivity : Activity() {
     private var profit = 0
-    private var isRun = false
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,12 +38,12 @@ class MainActivity : Activity() {
     fun onClickStartStop(view: View) {
         view as Button
         if (isRun) {
-            //view.setImageResource(R.drawable.start)
-            while(isRun) sleep(1000)
-            isRun = false
+            //"Start".also { view.text = it }
+            //isRun = false
 
         } else if (!isRun) {
-            //view.setImageResource(R.drawable.stop)
+            //isRun = true
+            //"Stop".also { view.text = it }
 
             val mainUserMoney: TextView? = findViewById(R.id.mainUserMoney)
 
@@ -61,7 +61,6 @@ class MainActivity : Activity() {
             GlobalScope.launch {
                 birzhaMain()
             }
-            isRun = true
         }
 
         plot.viewport?.isScalable = true
@@ -69,20 +68,20 @@ class MainActivity : Activity() {
         plot.viewport?.isScrollable = true
         plot.viewport?.isXAxisBoundsManual = true
 
-        GlobalScope.launch{
-            while(true){
+        GlobalScope.launch {
+            while (true) {
 
                 curValue.text = currentPrice.toString()
 
-                if (status == "buy" && openPrice != 0){
+                if (status == "buy" && openPrice != 0) {
                     profit = currentPrice - openPrice
                     profitValue.text = profit.toString()
                 }
-                if (status == "sell" && openPrice != 0){
+                if (status == "sell" && openPrice != 0) {
                     profit = openPrice - currentPrice
                     profitValue.text = profit.toString()
                 }
-                if (status == "none"){
+                if (status == "none") {
                     profitValue.text = ""
                 }
             }
@@ -92,35 +91,39 @@ class MainActivity : Activity() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun onClickBuy(view: View) {
         view as Button
-        //val assets : String? = EditText(R.id.inputAmount)
-        if (status == "none"){
-            status = "buy"
-            openPrice = currentPrice
+        val inputAmount = findViewById<EditText>(R.id.inputAmount)
+        val amount = inputAmount.text.toString().toInt()
+        //if (status == "none"){
+        //  status = "buy"
 
-            val openBid: TextView = findViewById(R.id.bidType)
-            val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
+        val openBid: TextView = findViewById(R.id.bidType)
+        val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
 
-            openBid.text = "Buy on"
-            openBidPrice.text = openPrice.toString()
-            mainUser.money -= openPrice
-        }
+        mainUser.assets += amount
+        mainUser.money -= currentPrice * amount
+
+        openBid.text = "Buy on"
+        openBidPrice.text = currentPrice.toString()
+        mainUserAssets.text = mainUser.assets.toString()
+        mainUserMoney.text = mainUser.money.toString()
+        //}
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun onClickSell(view: View) {
         view as Button
-        if (status == "none"){
-            status = "sell"
-            openPrice = currentPrice
+        val inputAmount = findViewById<EditText>(R.id.inputAmount)
+        val amount = inputAmount.text.toString().toInt()
+        openPrice = currentPrice
 
-            val openBid: TextView = findViewById(R.id.bidType)
-            val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
+        val openBid: TextView = findViewById(R.id.bidType)
+        val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
 
-            openBid.text = "Sell on"
-            openBidPrice.text = openPrice.toString()
-            mainUser.money -= openPrice
-        }
+        openBid.text = "Sell on"
+        openBidPrice.text = openPrice.toString()
+        mainUser.money -= openPrice
     }
+
 
 
 
@@ -135,5 +138,4 @@ class MainActivity : Activity() {
 //        textAssets = findViewById(R.id.assets)
 //        textAssets?.text = mainUser.assets.toString()
 //    }
-
 }
