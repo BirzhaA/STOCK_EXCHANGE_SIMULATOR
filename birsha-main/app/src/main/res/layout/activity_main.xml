@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/assets"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/Liner1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/graph"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/curPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Price:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/curValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/profit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Profit:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/profitValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Liner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Liner1"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/openBid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Opening:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/bidType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/openiBidPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Liner3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Liner2"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Assets:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:backgroundTint="#FFF"
+            android:hint="amount"
+            android:inputType="number"
+            android:textColor="#FFF"
+            android:textColorHint="#80FFFFFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1" />
+
+    </LinearLayout>
+
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph"
+        android:layout_width="wrap_content"
+        android:layout_height="277dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/liner_header"/>
+
+
+    <!-- <ImageButton
+         android:id="@+id/startAndStopButton"
+         android:layout_width="102dp"
+         android:layout_height="85dp"
+         android:layout_marginTop="53dp"
+         android:background="#16FFFFFF"
+         android:contentDescription="@string/start_button"
+         android:onClick="onClickStartStop"
+         android:src="@drawable/start"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/graph"
+         app:layout_constraintVertical_bias="0.836" /> -->
+
+    <!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/liner_header"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Money:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/mainUserMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Assets:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:id="@+id/mainUserAssets"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:visibility="visible"
+        android:id="@+id/liner_header"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_assets"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/textMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Money:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFF"
+                />
+            <TextView
+                android:layout_toRightOf="@+id/textMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mainUserMoney"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:text="test"
+                />
+
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_assets"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/textAssets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Assets:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFF"
+                />
+            <TextView
+                android:layout_toRightOf="@+id/textAssets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mainUserAssets"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:text="test"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <!--    <Button
+            android:id="@+id/closeBidButton"
+            android:layout_width="120dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="32dp"
+            android:onClick="closeBid"
+            android:text="Close bid"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sell"
+            app:layout_constraintHorizontal_bias="0.968"
+            app:layout_constraintStart_toEndOf="@+id/buy"
+            app:layout_constraintTop_toBottomOf="@+id/graph"
+            app:layout_constraintVertical_bias="0.551" /> -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/Liner3"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/buy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickBuy"
+            android:background="@drawable/bg_assets"
+            android:text="Buy"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3" />
+
+        <Button
+            android:id="@+id/sell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickSell"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="Sell"
+            android:background="@drawable/bg_assets"
+            android:textColor="#FFF" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_start_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFF"
+        android:background="@drawable/bg_assets"
+        android:text="Start"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
