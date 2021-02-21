@@ -2,6 +2,7 @@ package com.example.birzha
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -16,7 +17,7 @@ import com.jjoe64.graphview.series.LineGraphSeries
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 
-lateinit var plot : GraphView
+lateinit var plot: GraphView
 lateinit var series: LineGraphSeries<DataPoint>
 var time = 0
 val mainUser = makeMainUser()
@@ -24,8 +25,9 @@ var status = "none"
 var openPrice = 0
 var isRun = false
 val startMoney = 1000
+
 @SuppressLint("StaticFieldLeak")
-lateinit var curValueText : TextView
+lateinit var curValueText: TextView
 
 class MainActivity : Activity() {
     private var profit = 0
@@ -36,17 +38,19 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
         curValueText = findViewById(R.id.curValue)
     }
-    fun closeActivity(view: Intent) {
+
+    fun closeActivity(view: View) {
         view as Button
         when (view.id) {
             R.id.closeActivity -> {
                 val intent = Intent(this, StartActivity::class.java)
-                closeActivity(intent)
+                startActivity(intent)
             }
             else -> {
             }
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.N)
     fun onClickStartStop(view: View) {
         view as Button
@@ -113,14 +117,18 @@ class MainActivity : Activity() {
         val openBid: TextView = findViewById(R.id.bidType)
         val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
 
-        mainUser.assets += amount
-        mainUser.money -= currentPrice * amount
+        if (mainUser.money - currentPrice * amount < 0) {
+            /*AlertDialog.Builder() builder = new AlertDialog.Builder(MainActivity.this)
+            builder.setMassege("No money")*/
+        } else {
+            mainUser.assets += amount
+            mainUser.money -= currentPrice * amount
 
-        "Buy on".also { openBid.text = it }
-        openBidPrice.text = currentPrice.toString()
-        mainUserAssets.text = mainUser.assets.toString()
-        mainUserMoney.text = mainUser.money.toString()
-        //}
+            "Buy on".also { openBid.text = it }
+            openBidPrice.text = currentPrice.toString()
+            mainUserAssets.text = mainUser.assets.toString()
+            mainUserMoney.text = mainUser.money.toString()
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -133,16 +141,19 @@ class MainActivity : Activity() {
         val openBid: TextView = findViewById(R.id.bidType)
         val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
 
-        mainUser.assets -= amount
-        mainUser.money += currentPrice * amount
+        if (mainUser.assets - amount < 0) {
+            //всплывающее окно с ошибкой alertDialog пока не реализовано
+        }
+        else {
+            mainUser.assets -= amount
+            mainUser.money += currentPrice * amount
 
-        "Sell on".also { openBid.text = it }
-        openBidPrice.text = currentPrice.toString()
-        mainUserAssets.text = mainUser.assets.toString()
-        mainUserMoney.text = mainUser.money.toString()
+            "Sell on".also { openBid.text = it }
+            openBidPrice.text = currentPrice.toString()
+            mainUserAssets.text = mainUser.assets.toString()
+            mainUserMoney.text = mainUser.money.toString()
+        }
     }
-
-
 
 
 //    fun changeUserMoney() {
