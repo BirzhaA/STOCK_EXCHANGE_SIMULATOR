@@ -4,6 +4,7 @@ package com.example.birzha//import java.util.Random
 import android.os.Build
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.github.mikephil.charting.data.Entry
 import com.jjoe64.graphview.series.DataPoint
 import kotlinx.coroutines.*
 import java.lang.System.currentTimeMillis
@@ -41,12 +42,19 @@ enum class BidType(val code: Int) {
 
 suspend fun addDot(){
     runBlocking (Dispatchers.Main) {
-        time += 1
         if(currentPrice <= 25) currentPrice += Random.nextInt(10, 20)
-        series.appendData(DataPoint(time.toDouble(), currentPrice.toDouble()), true, time)
-        plot.addSeries(series)
+
+        time += 1
+//        xValues.add(time.toString())
+        lineEntry.add(Entry(time.toFloat(), currentPrice.toFloat()))
+
+//        series.appendData(DataPoint(time.toDouble(), currentPrice.toDouble()), true, time)
+//        plot.addSeries(series)
+
+        plot.data = data
+
         curValueText.text = currentPrice.toString()
-        delay(500)
+        delay(1000)
     }
 }
 
@@ -224,7 +232,7 @@ suspend fun trade(bid : Bid){
 suspend fun decisionBuy(person : Person) {
     val share = Random.nextFloat()  //share for investing
     val investmentAmount = (person.money * share).toInt()
-    val buyPrice = (Random.nextDouble(0.6, 1.25) * currentPrice).toInt()
+    val buyPrice = (Random.nextDouble(0.85, 1.0) * currentPrice).toInt()
     val amountOfAssets = investmentAmount / buyPrice
     if (amountOfAssets > 0){
         person.money -= amountOfAssets * buyPrice
@@ -238,7 +246,7 @@ suspend fun decisionSell(person : Person) {
     val share = Random.nextFloat()  //share for selling
     val saleableAssets = (person.assets * share).toInt()
     if (saleableAssets > 0){
-        val sellPrice = (Random.nextDouble(0.9, 1.25) * currentPrice).toInt()
+        val sellPrice = (Random.nextDouble(1.0, 1.15) * currentPrice).toInt()
         if (sellPrice > person.averagePrice * person.sellInterest || (Random.nextDouble() < Random.nextDouble() * Random.nextDouble() * (person.potency * person.potency))){
             person.assets -= saleableAssets
             val bid = makeBid(person.ID, sellPrice, saleableAssets, BidType.SELL.code, 0.0)

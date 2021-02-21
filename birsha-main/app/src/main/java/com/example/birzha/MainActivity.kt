@@ -1,8 +1,11 @@
 package com.example.birzha
 
+//import com.jjoe64.graphview.GraphView
+//import com.jjoe64.graphview.series.DataPoint
+//import com.jjoe64.graphview.series.LineGraphSeries
+import android.R.attr.entries
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -11,20 +14,27 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import com.jjoe64.graphview.GraphView
-import com.jjoe64.graphview.series.DataPoint
-import com.jjoe64.graphview.series.LineGraphSeries
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-lateinit var plot: GraphView
-lateinit var series: LineGraphSeries<DataPoint>
+
+lateinit var plot : LineChart
+//val xValues = ArrayList<String>()
+val lineEntry = ArrayList<Entry>()
+val dataSet = LineDataSet(lineEntry, "First")
+var data = LineData(dataSet)
 var time = 0
 val mainUser = makeMainUser()
-var status = "none"
+//var status = "none"
 var openPrice = 0
 var isRun = false
 val startMoney = 1000
+var resume = false
 
 @SuppressLint("StaticFieldLeak")
 lateinit var curValueText: TextView
@@ -62,48 +72,34 @@ class MainActivity : Activity() {
             isRun = true
             "Stop".also { view.text = it }
 
-            val mainUserMoney: TextView? = findViewById(R.id.mainUserMoney)
+            if(!resume){
+                val mainUserMoney: TextView? = findViewById(R.id.mainUserMoney)
 
-            mainUserMoney?.text = mainUser.money.toString()
-            mainUserAssets?.text = mainUser.assets.toString()
+                mainUserMoney?.text = mainUser.money.toString()
+                mainUserAssets?.text = mainUser.assets.toString()
 
-            plot = findViewById(R.id.graph)
-            series = LineGraphSeries(
-                arrayOf(
-                    DataPoint(0.0, 100.0)
-                )
-            )
-            plot.addSeries(series)
+                plot = findViewById(R.id.graph)
 
-            GlobalScope.launch {
-                birzhaMain()
-            }
-        }
 
-        plot.viewport?.isScalable = true
-        plot.viewport?.setScalableY(false)
-        plot.viewport?.isScrollable = true
-        plot.viewport?.isXAxisBoundsManual = true
 
-        /*
-        GlobalScope.launch {
-            while (true) {
-                curValue.text = currentPrice.toString()
 
-                if (status == "buy" && openPrice != 0) {
-                    profit = currentPrice - openPrice
-                    profitValue.text = profit.toString()
-                }
-                if (status == "sell" && openPrice != 0) {
-                    profit = openPrice - currentPrice
-                    profitValue.text = profit.toString()
-                }
-                if (status == "none") {
-                    profitValue.text = ""
+//                series = LineGraphSeries(
+//                    arrayOf(
+//                        DataPoint(0.0, 100.0)
+//                    )
+//                )
+//                plot.addSeries(series)
+
+                GlobalScope.launch {
+                    birzhaMain()
                 }
             }
         }
-        */
+
+//        plot.viewport?.isScalable = true
+//        plot.viewport?.setScalableY(false)
+//        plot.viewport?.isScrollable = true
+//        plot.viewport?.isXAxisBoundsManual = true
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

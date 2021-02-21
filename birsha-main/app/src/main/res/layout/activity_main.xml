@@ -141,10 +141,10 @@
 
     </LinearLayout>
 
-    <com.jjoe64.graphview.GraphView
+    <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/graph"
-        android:layout_width="wrap_content"
-        android:layout_height="277dp"
+        android:layout_width="391dp"
+        android:layout_height="273dp"
         android:layout_below="@id/liner_header"
         android:layout_marginTop="10dp" />
 
@@ -167,16 +167,16 @@
             <ImageView
 
                 android:id="@+id/imgMoney"
-                android:layout_width="50dp"
-                android:layout_height="34dp"
+                android:layout_width="31dp"
+                android:layout_height="30dp"
+                android:layout_alignParentTop="false"
                 android:src="@drawable/money" />
-
 
             <TextView
                 android:id="@+id/mainUserMoney"
-                android:layout_width="wrap_content"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
+                android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@+id/imgMoney"
                 android:text="1000"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -192,18 +192,19 @@
             android:background="@drawable/bg_assets"
             android:gravity="center">
 
+
             <ImageView
                 android:id="@+id/imgAssets"
-                android:layout_width="50dp"
-                android:layout_height="32dp"
+                android:layout_width="30dp"
+                android:layout_height="28dp"
+                android:layout_alignParentTop="false"
                 android:src="@drawable/assets" />
-
 
             <TextView
                 android:id="@+id/mainUserAssets"
-                android:layout_width="wrap_content"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
+                android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/imgAssets"
                 android:text="100"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
