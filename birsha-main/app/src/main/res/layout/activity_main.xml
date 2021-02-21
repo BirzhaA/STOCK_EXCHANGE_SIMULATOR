@@ -138,21 +138,21 @@
         android:id="@+id/graph"
         android:layout_width="wrap_content"
         android:layout_height="277dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/liner_header"/>
+        android:layout_below="@id/liner_header"
+        android:layout_marginTop="10dp" />
 
     <LinearLayout
+        android:id="@+id/liner_header"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:visibility="visible"
-        android:id="@+id/liner_header"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="visible">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:background="@drawable/bg_assets"
             android:gravity="center">
 
@@ -164,35 +164,33 @@
                 android:layout_height="34dp"
                 android:src="@drawable/money" />
 
+
+
             <TextView
                 android:id="@+id/mainUserMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/imgMoney"
                 android:text="1000"
-                android:textColor="#FFF"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:layout_marginLeft="0dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFF" />
 
         </RelativeLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.3"
-            />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/bg_assets"
-            android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
                 android:id="@+id/imgAssets"
                 android:layout_width="50dp"
-                android:layout_height="34dp"
-                android:src="@drawable/assets"/>
+                android:layout_height="32dp"
+                android:src="@drawable/assets" />
 
 
             <TextView
@@ -201,11 +199,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
                 android:layout_toRightOf="@+id/imgAssets"
-                android:text="test"
+                android:text="100"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="#FFF" />
 
         </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.6"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.6"
+            android:layout_marginLeft="3dp"
+            android:background="@drawable/bg_assets"
+            android:textColor="#FFF"
+            android:text="×"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="40dp"/>
 
     </LinearLayout>
 
@@ -214,15 +228,15 @@
         android:layout_height="40dp"
         android:layout_below="@+id/Liner3"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/buy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="onClickBuy"
             android:background="@drawable/bg_assets"
+            android:onClick="onClickBuy"
             android:text="Buy"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFF" />
@@ -237,21 +251,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="onClickSell"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:text="Sell"
             android:background="@drawable/bg_assets"
+            android:onClick="onClickSell"
+            android:text="Sell"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFF" />
     </LinearLayout>
 
     <Button
         android:id="@+id/bt_start_stop"
-        android:onClick="onClickStartStop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFF"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/bg_assets"
+        android:onClick="onClickStartStop"
         android:text="Start"
-        android:layout_alignParentBottom="true"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFF" />
 </RelativeLayout>
