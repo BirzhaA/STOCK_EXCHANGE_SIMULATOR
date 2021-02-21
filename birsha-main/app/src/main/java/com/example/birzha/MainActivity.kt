@@ -2,12 +2,12 @@ package com.example.birzha
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.jjoe64.graphview.GraphView
@@ -15,7 +15,6 @@ import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
-import java.lang.Thread.sleep
 
 lateinit var plot : GraphView
 lateinit var series: LineGraphSeries<DataPoint>
@@ -37,7 +36,17 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
         curValueText = findViewById(R.id.curValue)
     }
-
+    fun closeActivity(view: Intent) {
+        view as Button
+        when (view.id) {
+            R.id.closeActivity -> {
+                val intent = Intent(this, StartActivity::class.java)
+                closeActivity(intent)
+            }
+            else -> {
+            }
+        }
+    }
     @RequiresApi(Build.VERSION_CODES.N)
     fun onClickStartStop(view: View) {
         view as Button

@@ -165,14 +165,13 @@
                 android:src="@drawable/money" />
 
 
-
             <TextView
                 android:id="@+id/mainUserMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
                 android:layout_toRightOf="@+id/imgMoney"
                 android:text="1000"
-                android:layout_marginLeft="0dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="#FFF" />
 
@@ -181,8 +180,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.2"
             android:layout_marginLeft="5dp"
+            android:layout_weight="1.2"
             android:background="@drawable/bg_assets"
             android:gravity="center">
 
@@ -208,18 +207,21 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.6"/>
+            android:layout_weight="1.6" />
 
         <Button
+            android:id="@+id/closeActivity"
+            android:onClick="closeActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.6"
             android:layout_marginLeft="3dp"
+            android:layout_weight="1.6"
             android:background="@drawable/bg_assets"
-            android:textColor="#FFF"
+            android:gravity="center"
             android:text="×"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="40dp"/>
+            android:textColor="#FFF"
+            android:textSize="30dp" />
 
     </LinearLayout>
 
