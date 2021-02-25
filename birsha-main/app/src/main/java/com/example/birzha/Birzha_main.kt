@@ -4,7 +4,6 @@ package com.example.birzha//import java.util.Random
 import android.os.Build
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import com.github.mikephil.charting.data.Entry
 import com.jjoe64.graphview.series.DataPoint
 import kotlinx.coroutines.*
 import java.lang.System.currentTimeMillis
@@ -42,26 +41,21 @@ enum class BidType(val code: Int) {
 
 suspend fun addDot(){
     runBlocking (Dispatchers.Main) {
-        if(currentPrice <= 25) currentPrice += Random.nextInt(10, 20)
-
         time += 1
-//        xValues.add(time.toString())
-        lineEntry.add(Entry(time.toFloat(), currentPrice.toFloat()))
-
-//        series.appendData(DataPoint(time.toDouble(), currentPrice.toDouble()), true, time)
-//        plot.addSeries(series)
-
-        plot.data = data
-
-        curValueText.text = currentPrice.toString()
-        delay(1000)
+        if(currentPrice <= 25) currentPrice += Random.nextInt(10, 20)
+        series.appendData(DataPoint(time.toDouble(), currentPrice.toDouble()), true, time)
+        if (time > 60) {
+            plot.addSeries(series)
+            curValueText.text = currentPrice.toString()
+            delay(1000)
+        }
     }
 }
 
 fun makeMainUser(): Person {
     //val x = (Random.nextDouble(10.0, 15.0)).toFloat()
     //val money =  ( (1.2361 * x*x*x - 0.6961 * x*x  + 0.4591 * x - 0.0055)  * 1.1).toInt()
-    val money = startMoney
+    val money = 1000
     val assets = 100
     return Person (
         -1, money, assets, currentPrice,
@@ -127,7 +121,6 @@ fun hedge(cur: Int, bid: Bid, amount: Int, listOfBids: MutableList<Bid>){
         listOfBids.add(makeBid(bid.personID, (people[bid.personID].interestLow * cur).toInt(), amount, BidType.SELL_LOW.code, id))
     }
 }
-
 
 @RequiresApi(Build.VERSION_CODES.N)
 suspend fun tradeBuy(bid: Bid){                            // пытаемся закрыть покупку
@@ -232,7 +225,7 @@ suspend fun trade(bid : Bid){
 suspend fun decisionBuy(person : Person) {
     val share = Random.nextFloat()  //share for investing
     val investmentAmount = (person.money * share).toInt()
-    val buyPrice = (Random.nextDouble(0.85, 1.0) * currentPrice).toInt()
+    val buyPrice = (Random.nextDouble(0.8, 1.1) * currentPrice).toInt()
     val amountOfAssets = investmentAmount / buyPrice
     if (amountOfAssets > 0){
         person.money -= amountOfAssets * buyPrice
@@ -246,7 +239,7 @@ suspend fun decisionSell(person : Person) {
     val share = Random.nextFloat()  //share for selling
     val saleableAssets = (person.assets * share).toInt()
     if (saleableAssets > 0){
-        val sellPrice = (Random.nextDouble(1.0, 1.15) * currentPrice).toInt()
+        val sellPrice = (Random.nextDouble(0.9, 1.1) * currentPrice).toInt()
         if (sellPrice > person.averagePrice * person.sellInterest || (Random.nextDouble() < Random.nextDouble() * Random.nextDouble() * (person.potency * person.potency))){
             person.assets -= saleableAssets
             val bid = makeBid(person.ID, sellPrice, saleableAssets, BidType.SELL.code, 0.0)
