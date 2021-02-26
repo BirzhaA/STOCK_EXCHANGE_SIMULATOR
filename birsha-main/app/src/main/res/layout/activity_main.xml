@@ -113,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Assets:"
+            android:text="Stocks:"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFFFFF" />
 
@@ -188,7 +188,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1.2"
             android:background="@drawable/bg_assets"
             android:gravity="center">
@@ -199,14 +199,16 @@
                 android:layout_width="50dp"
                 android:layout_height="32dp"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="3dp"
+                android:layout_marginStart="-6dp"
                 android:src="@drawable/assets" />
 
             <TextView
                 android:id="@+id/mainUserAssets"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@+id/imgAssets"
                 android:layout_toRightOf="@+id/imgAssets"
                 android:text="100"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -214,17 +216,28 @@
 
         </RelativeLayout>
 
+        <!--<Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1.6"
+            android:background="@drawable/bg_assets">
+
+        </Button>-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.6" />
+            android:layout_weight="1.6">
+
+        </TextView>
 
         <Button
             android:id="@+id/closeActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1.6"
+            android:layout_marginLeft="0dp"
+            android:layout_weight="1.65"
             android:background="@drawable/bg_assets"
             android:gravity="center"
             android:onClick="closeActivity"

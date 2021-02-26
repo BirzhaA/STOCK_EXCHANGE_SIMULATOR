@@ -13,10 +13,10 @@ class StartActivity : Activity() {
         setContentView(R.layout.activity_start)
     }
 
-    fun startActivity(view: View) {
+    fun newActivity(view: View) {
         view as Button
         when (view.id) {
-            R.id.startActivity -> {
+            R.id.newGame -> {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
@@ -24,4 +24,16 @@ class StartActivity : Activity() {
             }
         }
     }
+
+/*    fun continueActivity(view: View) {
+        view as Button
+        when (view.id) {
+            R.id.conGame -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+            else -> {
+            }
+        }
+    }*/
 }

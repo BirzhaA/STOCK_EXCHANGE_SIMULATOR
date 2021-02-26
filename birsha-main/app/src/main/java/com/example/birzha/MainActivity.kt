@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.DataPoint
@@ -24,6 +25,7 @@ val mainUser = makeMainUser()
 var openPrice = 0
 var isRun = false
 var resume = false
+//var LightOrNo = false
 
 @SuppressLint("StaticFieldLeak")
 lateinit var curValueText: TextView
@@ -61,7 +63,7 @@ class MainActivity : Activity() {
         } else if (!isRun) {
             isRun = true
             "Stop".also { view.text = it }
-            if(!resume) {
+            if (!resume) {
                 val mainUserMoney: TextView? = findViewById(R.id.mainUserMoney)
 
                 mainUserMoney?.text = mainUser.money.toString()
@@ -122,8 +124,10 @@ class MainActivity : Activity() {
         val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
 
         if (mainUser.money - currentPrice * amount < 0) {
-            /*AlertDialog.Builder() builder = new AlertDialog.Builder(MainActivity.this)
-            builder.setMassege("No money")*/
+            val text = "Not enough money"
+            val duration = Toast.LENGTH_SHORT
+            val toast = Toast.makeText(applicationContext, text, duration)
+            toast.show()
         } else {
             mainUser.assets += amount
             mainUser.money -= currentPrice * amount
@@ -146,9 +150,11 @@ class MainActivity : Activity() {
         val openBidPrice: TextView = findViewById(R.id.openiBidPrice)
 
         if (mainUser.assets - amount < 0) {
-            //всплывающее окно с ошибкой alertDialog пока не реализовано
-        }
-        else {
+            val text = "Not enough stocks"
+            val duration = Toast.LENGTH_SHORT
+            val toast = Toast.makeText(applicationContext, text, duration)
+            toast.show()
+        } else {
             mainUser.assets -= amount
             mainUser.money += currentPrice * amount
 
@@ -158,6 +164,16 @@ class MainActivity : Activity() {
             mainUserMoney.text = mainUser.money.toString()
         }
     }
+
+/*    fun Light(view: View) {
+        view as Button
+        if (LightOrNo){
+            LightOrNo = false
+        }
+        else {
+            LightOrNo = true
+        }
+    }*/
 
     /*fun graphChange(){
         if (!isRun){
