@@ -42,12 +42,12 @@ enum class BidType(val code: Int) {
 suspend fun addDot(){
     runBlocking (Dispatchers.Main) {
         time += 1
-        if(currentPrice <= 25) currentPrice += Random.nextInt(10, 20)
+        if(currentPrice <= 40) currentPrice += Random.nextInt(20, 50)
         series.appendData(DataPoint(time.toDouble(), currentPrice.toDouble()), true, time)
         if (time > 60) {
             plot.addSeries(series)
             curValueText.text = currentPrice.toString()
-            delay(1000)
+            delay(1500)
         }
     }
 }
